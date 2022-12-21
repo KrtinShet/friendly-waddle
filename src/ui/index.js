@@ -1,1 +1,2 @@
-console.log('Hello World');
+import App from './App';
+export { App };

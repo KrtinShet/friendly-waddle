@@ -8,6 +8,14 @@
     "default_popup": "popup.html",
     "default_icon": "assets/icons/icon-64.png"
   },
+  "permissions": [
+    "activeTab",
+    "alarms",
+    "nativeMessaging",
+    "scripting",
+    "tabs",
+    "storage"
+  ],
   "icons": {
     "128": "assets/icons/icon-128.png"
   },
