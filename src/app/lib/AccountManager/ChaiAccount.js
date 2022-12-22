@@ -9,7 +9,6 @@ class ChaiAccount {
       this.keyMap = opts.keyMap || new Map();
     } else {
       this.accountID = opts.accountID;
-      this.load();
     }
   }
 

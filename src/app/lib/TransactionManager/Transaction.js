@@ -3,10 +3,9 @@ class Transaction {
     this.pendingTransactions = [];
     this.completedTransactions = [];
     this.transactionMap = new Map();
-    this._load();
   }
 
-  async _load() {
+  async load() {
     const result = await chrome.storage.local.get(['transactions']);
     if (result && result.transactions) {
       result = JSON.parse(result);

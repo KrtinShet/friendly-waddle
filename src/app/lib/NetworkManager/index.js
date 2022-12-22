@@ -3,7 +3,6 @@ import Network from './Network';
 export default class NetworkManager {
   constructor() {
     this.networks = [];
-    this._load();
   }
 
   addNetwork(network) {
@@ -15,7 +14,7 @@ export default class NetworkManager {
     return this.networks;
   }
 
-  async _load() {
+  async load() {
     const result = await chrome.storage.local.get(['networks']);
     if (result && result.networks) {
       result = JSON.parse(result.networks);

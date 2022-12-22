@@ -8,7 +8,6 @@ class AccountManager {
     this.accounts = opts.accounts || new Map();
     this.currentAccount = null;
     this.accountsLength = 0;
-    this.load();
   }
 
   async load() {
@@ -18,9 +17,12 @@ class AccountManager {
       this.currentAccount = new ChaiAccount({
         accountID: result.currentAccount,
       });
+      await this.currentAccount.load();
 
       for (const accountID of result.accounts) {
-        this.accounts.set(accountID, new ChaiAccount({ accountID }));
+        let newAccount = new ChaiAccount({ accountID });
+        await newAccount.load();
+        this.accounts.set(accountID, newAccount);
       }
 
       this.accountsLength = this.accounts.size;
@@ -28,7 +30,7 @@ class AccountManager {
   }
 
   async save() {
-    chrome.storage.local.set({
+    await chrome.storage.local.set({
       accounts: JSON.stringify({
         currentAccount: this.currentAccount.accountID,
         accounts: Array.from(this.accounts.keys()),

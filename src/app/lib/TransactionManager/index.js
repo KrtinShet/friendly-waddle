@@ -2,8 +2,10 @@ import BaseTransaction from './BaseTransaction';
 import Transaction from './Transaction';
 
 export default class TransactionManager {
-  constructor() {
+  constructor() {}
+  async load() {
     this.transaction = new Transaction();
+    this.transaction.load();
   }
 
   createTransaction(opts = {}) {
