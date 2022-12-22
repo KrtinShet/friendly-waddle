@@ -2,16 +2,18 @@ import { ethers } from 'ethers';
 import TronWeb from 'tronweb';
 import ChaiAccount from './ChaiAccount';
 import { Account } from './Account';
+import { decrypt } from '../../utils';
 
 class AccountManager {
   constructor(opts = {}) {
     this.accounts = opts.accounts || new Map();
     this.currentAccount = null;
     this.accountsLength = 0;
+    this.mnemonic = opts.mnemonic || null;
   }
 
   async load() {
-    const result = await chrome.storage.local.get(['accounts']);
+    const result = await chrome.storage.local.get('accounts');
     if (result && result.accounts) {
       result = JSON.parse(result.accounts);
       this.currentAccount = new ChaiAccount({
@@ -26,6 +28,7 @@ class AccountManager {
       }
 
       this.accountsLength = this.accounts.size;
+      this.mnemonic = result.mnemonic;
     }
   }
 
@@ -34,6 +37,7 @@ class AccountManager {
       accounts: JSON.stringify({
         currentAccount: this.currentAccount.accountID,
         accounts: Array.from(this.accounts.keys()),
+        mnemonic: this.mnemonic,
       }),
     });
   }
@@ -91,6 +95,13 @@ class AccountManager {
 
   isValidMenmonic(mnemonic) {
     return ethers.utils.isValidMnemonic(mnemonic);
+  }
+
+  async getMnemonic(password) {
+    const _password = await chrome.storage.session.get(['password']);
+    if (_password.password === password) {
+      return decrypt(this.mnemonic, password);
+    }
   }
 }
 

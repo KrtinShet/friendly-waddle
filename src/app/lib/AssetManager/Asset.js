@@ -1,5 +1,6 @@
 export class Asset {
   constructor(opts = {}) {
+    this.assetID = opts.AssetID;
     this.value = opts.value;
     this.symbol = opts.symbol;
     this.name = opts.name;

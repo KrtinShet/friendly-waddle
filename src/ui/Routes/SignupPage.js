@@ -1,32 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react';
 
-import { Box } from "@mui/system";
-import { useNavigate } from "react-router-dom";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { Typography } from "@mui/material";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import Container from "@mui/system/Container";
-import Button from "@mui/material/Button";
-
-import { signup } from "../Store/Slices/authSlice";
-import { encryptMnemonic } from "../Store/Slices/accountSlice";
-import { refreshAllAssetData } from "./../Store/Slices/assetsSlice";
-import { getRates } from "../Store/Slices/convertionRates";
+import { Box } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { Typography } from '@mui/material';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Container from '@mui/system/Container';
+import Button from '@mui/material/Button';
 
 const SignupPage = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const state = useSelector((state) => state);
   const [values, setValues] = useState({
-    password: "",
-    confirmPassword: "",
+    password: '',
+    confirmPassword: '',
     showPassword: false,
     showConfirmPassword: false,
   });
@@ -96,31 +88,31 @@ const SignupPage = () => {
     <Container>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          pt: "10px",
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-start',
+          pt: '10px',
         }}
       >
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            mt: "40px",
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            mt: '40px',
           }}
         >
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
             <ChevronLeftIcon
               sx={{
-                fontSize: "1.625rem",
+                fontSize: '1.625rem',
                 fontWeight: 700,
-                cursor: "pointer",
+                cursor: 'pointer',
               }}
               onClick={() => {
                 navigate(-1);
@@ -130,11 +122,11 @@ const SignupPage = () => {
             <Typography
               variant="dssReg"
               sx={{
-                fontWeight: "fontWeightSemiBold",
+                fontWeight: 'fontWeightSemiBold',
               }}
             >
               Create password
-              <span style={{ color: "orange", fontWeight: 600 }}>.</span>
+              <span style={{ color: 'orange', fontWeight: 600 }}>.</span>
             </Typography>
           </Box>
         </Box>
@@ -144,13 +136,13 @@ const SignupPage = () => {
         </Typography>
 
         {/**  password  */}
-        <Box sx={{ mt: "20px", display: "flex", flexDirection: "column" }}>
+        <Box sx={{ mt: '20px', display: 'flex', flexDirection: 'column' }}>
           <Typography variant="tlgBd" sx={{ mb: 1 }}>
             Password
           </Typography>
           {/* // set error here down */}
           <FormControl
-            sx={{ width: "25ch" }}
+            sx={{ width: '25ch' }}
             variant="outlined"
             error={hasPasswordError}
           >
@@ -158,11 +150,11 @@ const SignupPage = () => {
               Password
             </InputLabel>
             <OutlinedInput
-              sx={{ width: "340px", height: "56px", borderRadius: "8px" }}
+              sx={{ width: '340px', height: '56px', borderRadius: '8px' }}
               id="outlined-adornment-password"
-              type={values.showPassword ? "text" : "password"}
+              type={values.showPassword ? 'text' : 'password'}
               value={values.password}
-              onChange={handleChange("password")}
+              onChange={handleChange('password')}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -185,13 +177,13 @@ const SignupPage = () => {
         </Box>
 
         {/** Confirm password */}
-        <Box sx={{ mt: "20px", display: "flex", flexDirection: "column" }}>
+        <Box sx={{ mt: '20px', display: 'flex', flexDirection: 'column' }}>
           <Typography variant="tlgBd" sx={{ mb: 1 }}>
             Confirm Password
           </Typography>
           {/* // set error here down */}
           <FormControl
-            sx={{ width: "25ch" }}
+            sx={{ width: '25ch' }}
             variant="outlined"
             error={hasConfirmPasswordError}
           >
@@ -200,14 +192,14 @@ const SignupPage = () => {
             </InputLabel>
             <OutlinedInput
               sx={{
-                width: "340px",
-                height: "56px",
-                borderRadius: "8px",
+                width: '340px',
+                height: '56px',
+                borderRadius: '8px',
               }}
               id="outlined-adornment-confirm-password"
-              type={values.showConfirmPassword ? "text" : "password"}
+              type={values.showConfirmPassword ? 'text' : 'password'}
               value={values.confirmPassword}
-              onChange={handleChange("confirmPassword")}
+              onChange={handleChange('confirmPassword')}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -231,21 +223,15 @@ const SignupPage = () => {
       </Box>
       <Box
         my="40px"
-        sx={{ display: "flex", justifyContent: "center", width: "100%" }}
+        sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}
       >
         <Button
-          sx={{ width: "100%", borderRadius: "15px", height: "57px" }}
+          sx={{ width: '100%', borderRadius: '15px', height: '57px' }}
           variant="contained"
           disabled={!canNavigate}
           onClick={() => {
             if (canNavigate) {
-              dispatch(getRates());
-              dispatch(
-                encryptMnemonic({ password: values.confirmPassword.trim() })
-              );
-              dispatch(signup({ password: values.confirmPassword.trim() }));
-              dispatch(refreshAllAssetData(state));
-              navigate("/wallet", { replace: true });
+              navigate('/wallet', { replace: true });
             }
           }}
         >

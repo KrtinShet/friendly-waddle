@@ -17,7 +17,7 @@ class ChaiAccount {
   }
 
   async load() {
-    const result = await chrome.storage.local.get([this.accountID]);
+    const result = await chrome.storage.local.get(this.accountID);
     if (result && result[this.accountID]) {
       result = JSON.parse(result);
       this.accountMap = new Map(Object.entries(JSON.parse(result.accountMap)));

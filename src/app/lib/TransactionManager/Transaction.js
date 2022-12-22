@@ -6,7 +6,7 @@ class Transaction {
   }
 
   async load() {
-    const result = await chrome.storage.local.get(['transactions']);
+    const result = await chrome.storage.local.get('transactions');
     if (result && result.transactions) {
       result = JSON.parse(result);
       this.pendingTransactions = result.pendingTransactions;

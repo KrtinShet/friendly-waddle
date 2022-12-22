@@ -1,33 +1,18 @@
-import React, { useEffect } from "react";
-import Typography from "@mui/material/Typography";
-import { Box, Container, Stack } from "@mui/system";
-import MyButton from "./../Components/MyButton";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
-import { createNewMnemonic } from "./../Store/Slices/accountSlice";
-import { isLoggedIn, isSignedUp } from "../Store/Slices/authSlice";
+import React from 'react';
+import Typography from '@mui/material/Typography';
+import { Box, Container, Stack } from '@mui/system';
+import MyButton from './../Components/MyButton';
+import { useNavigate } from 'react-router-dom';
 
 const WelcomePage = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const _isLoggedIn = useSelector(isLoggedIn);
-  const _isSignedUp = useSelector(isSignedUp);
-
-  useEffect(() => {
-    if (_isLoggedIn && _isSignedUp) {
-      navigate("/wallet");
-    }
-    // eslint-disable-next-line
-  }, []);
 
   return (
-    <Container sx={{ position: "relative", height: "100%" }}>
+    <Container sx={{ position: 'relative', height: '100%' }}>
       <Box>
         <svg
           style={{
-            position: "absolute",
+            position: 'absolute',
             top: 0,
             left: 0,
           }}
@@ -57,32 +42,32 @@ const WelcomePage = () => {
       </Box>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          alignContent: "center",
-          minHeight: "600px",
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          alignContent: 'center',
+          minHeight: '600px',
         }}
       >
         <Typography
           variant="dlgReg"
           sx={{
-            fontWeight: "fontWeightSemiBold",
+            fontWeight: 'fontWeightSemiBold',
           }}
           align="center"
         >
           Chai Wallet
-          <span style={{ color: "orange", fontWeight: 600 }}>.</span>
+          <span style={{ color: 'orange', fontWeight: 600 }}>.</span>
         </Typography>
-        <Typography align="center" variant="tlgMed" sx={{ width: "18.5rem" }}>
+        <Typography align="center" variant="tlgMed" sx={{ width: '18.5rem' }}>
           To get started create a new wallet or connect using existing wallet
         </Typography>
         <Stack
           align="center"
           spacing={2}
           sx={{
-            mt: "50px",
+            mt: '50px',
           }}
         >
           <MyButton
@@ -90,15 +75,14 @@ const WelcomePage = () => {
             type="submit"
             color="primary"
             onClick={() => {
-              dispatch(createNewMnemonic());
-              navigate("/createWallet");
+              navigate('/createWallet');
             }}
           >
             <p>Create a new wallet</p>
           </MyButton>
           <MyButton
             onClick={() => {
-              navigate("/importWallet");
+              navigate('/importWallet');
             }}
             type="submit"
             color="primary"

@@ -1,28 +1,24 @@
-import React from "react";
-import { Container } from "@mui/system";
-import Box from "@mui/system/Box";
-import { Typography } from "@mui/material";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import MyButton from "./../Components/MyButton";
-import { login } from "../Store/Slices/authSlice";
-import { refreshAllAssetData } from "../Store/Slices/assetsSlice";
-import { getRates } from "../Store/Slices/convertionRates";
+import React from 'react';
+import { Container } from '@mui/system';
+import Box from '@mui/system/Box';
+import { Typography } from '@mui/material';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import MyButton from './../Components/MyButton';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
   const navigate = useNavigate();
   const [values, setValues] = React.useState({
-    password: "",
-    confirmPassword: "",
+    password: '',
+    confirmPassword: '',
     showPassword: false,
     showConfirmPassword: false,
   });
@@ -44,7 +40,7 @@ const LoginPage = () => {
       <Box>
         <svg
           style={{
-            position: "absolute",
+            position: 'absolute',
             top: 0,
             left: 0,
           }}
@@ -74,25 +70,25 @@ const LoginPage = () => {
       </Box>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          alignContent: "center",
-          minHeight: "600px",
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          alignContent: 'center',
+          minHeight: '600px',
         }}
       >
         <Typography
           variant="dlgReg"
           sx={{
-            fontWeight: "fontWeightSemiBold",
+            fontWeight: 'fontWeightSemiBold',
           }}
           align="center"
         >
           Chai Wallet
-          <span style={{ color: "orange", fontWeight: 600 }}>.</span>
+          <span style={{ color: 'orange', fontWeight: 600 }}>.</span>
         </Typography>
-        <Typography align="center" variant="tlgMed" sx={{ width: "18.35rem" }}>
+        <Typography align="center" variant="tlgMed" sx={{ width: '18.35rem' }}>
           Login to your existing wallet by entering the password
         </Typography>
 
@@ -100,27 +96,27 @@ const LoginPage = () => {
 
         <Box
           sx={{
-            mt: "10px",
-            display: "flex",
-            flexDirection: "column",
-            width: "100%",
-            marginLeft: "15px",
-            justifyContent: "center",
+            mt: '10px',
+            display: 'flex',
+            flexDirection: 'column',
+            width: '100%',
+            marginLeft: '15px',
+            justifyContent: 'center',
           }}
         >
           <Typography variant="mdbold" sx={{ mb: 1, mt: 4 }}>
             Enter Password
           </Typography>
-          <FormControl sx={{ width: "25ch" }} variant="outlined">
+          <FormControl sx={{ width: '25ch' }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">
               Enter Password
             </InputLabel>
             <OutlinedInput
-              sx={{ width: "340px", height: "56px", borderRadius: "8px" }}
+              sx={{ width: '340px', height: '56px', borderRadius: '8px' }}
               id="outlined-adornment-password"
-              type={values.showPassword ? "text" : "password"}
+              type={values.showPassword ? 'text' : 'password'}
               value={values.password}
-              onChange={handleChange("password")}
+              onChange={handleChange('password')}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -140,13 +136,13 @@ const LoginPage = () => {
         <Box>
           <Box
             sx={{
-              mt: "26px",
-              display: "flex",
-              flexDirection: "column",
-              width: "100%",
-              marginLeft: "4px",
-              justifyContent: "center",
-              minWidth: "340px",
+              mt: '26px',
+              display: 'flex',
+              flexDirection: 'column',
+              width: '100%',
+              marginLeft: '4px',
+              justifyContent: 'center',
+              minWidth: '340px',
             }}
           >
             <MyButton
@@ -154,10 +150,7 @@ const LoginPage = () => {
               type="submit"
               color="primary"
               onClick={() => {
-                dispatch(getRates());
-                dispatch(login({ password: values.password }));
-                dispatch(refreshAllAssetData(state));
-                navigate("/wallet");
+                navigate('/wallet');
               }}
             >
               Login

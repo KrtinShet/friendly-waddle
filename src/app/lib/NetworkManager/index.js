@@ -15,7 +15,7 @@ export default class NetworkManager {
   }
 
   async load() {
-    const result = await chrome.storage.local.get(['networks']);
+    const result = await chrome.storage.local.get('networks');
     if (result && result.networks) {
       result = JSON.parse(result.networks);
       this.networks = result.networks;
