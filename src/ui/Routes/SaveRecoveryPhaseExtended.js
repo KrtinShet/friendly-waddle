@@ -37,8 +37,8 @@ const SaveRecoveryPhaseExtended = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  let _passwd = useSelector((state) => state.auth.password);
-  let _mnemonic = useSelector((state) => state.account.mnemonic);
+  const _mnemonic =
+    'kite medal water surround spring sadness slot slam believe round random delay';
   let contents = _mnemonic.split(' ');
 
   const handleClick = () => {
@@ -152,7 +152,6 @@ const SaveRecoveryPhaseExtended = () => {
           variant="contained"
           type="submit"
           onClick={() => {
-            dispatch(encryptMnemonic({ password: _passwd }));
             navigate('/wallet');
           }}
         >

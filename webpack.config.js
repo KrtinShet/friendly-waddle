@@ -44,7 +44,6 @@ let options = {
       'scripts',
       'injectScript.js'
     ),
-    ui: path.resolve(__dirname, 'src', 'ui'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

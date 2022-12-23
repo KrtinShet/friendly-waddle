@@ -80,10 +80,6 @@ const Item = styled(Paper)(({ theme }) => ({
 const ReceivePage = () => {
   const navigate = useNavigate();
   const [selectedValue, setSelectedValue] = React.useState(1);
-  const _accounts = useSelector((state) => state.account.accounts);
-  const _account = useSelector(
-    (state) => state.account.accountIDs[selectedValue]
-  );
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -132,14 +128,14 @@ const ReceivePage = () => {
       {/* profiles */}
 
       <Box sx={{ maxHeight: '180px', overflow: 'auto', mt: '1rem' }}>
-        {_accounts.map((accountId) => (
+        {/* {_accounts.map((accountId) => (
           <AccountItem
             key={accountId}
             selectedValue={selectedValue}
             handleChange={handleChange}
             accountId={accountId}
           />
-        ))}
+        ))} */}
       </Box>
 
       {/* cards */}
@@ -166,13 +162,13 @@ const ReceivePage = () => {
                   width: '270px',
                 }}
               >
-                <Typography noWrap>{_account.eth}</Typography>
+                <Typography noWrap>some eth address</Typography>
               </Box>
             </Box>
           </Box>
           <IconButton
             onClick={() => {
-              navigator.clipboard.writeText(_account.eth);
+              navigator.clipboard.writeText('some eth address');
             }}
           >
             <ContentCopyIcon color="primary" fontSize="large" />
@@ -201,13 +197,13 @@ const ReceivePage = () => {
                   width: '270px',
                 }}
               >
-                <Typography noWrap>{_account.tron}</Typography>
+                <Typography noWrap>{'some tron addresses'}</Typography>
               </Box>
             </Box>
           </Box>
           <IconButton
             onClick={() => {
-              navigator.clipboard.writeText(_account.tron);
+              navigator.clipboard.writeText('some tron addresses');
             }}
           >
             <ContentCopyIcon color="primary" fontSize="large" />

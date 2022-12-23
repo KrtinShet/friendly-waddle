@@ -1,32 +1,31 @@
-import React, { useState } from "react";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
-import Checkbox from "@mui/material/Checkbox";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import MyButton from "../Components/MyButton";
-import { useNavigate } from "react-router-dom";
-import bcryptjs from "bcryptjs";
-import { decryptMnemonic } from "../Store/Slices/accountSlice";
-import { useDispatch, useSelector } from "react-redux";
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
+import React, { useState } from 'react';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import { Typography } from '@mui/material';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import MyButton from '../Components/MyButton';
+import { useNavigate } from 'react-router-dom';
+import bcryptjs from 'bcryptjs';
+import { decryptMnemonic } from '../Store/Slices/accountSlice';
+import { useDispatch, useSelector } from 'react-redux';
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 const ShowRecoveryPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const _passwordHash = useSelector((state) => state.auth.passwordHash);
   const [agreed, setAgreed] = useState(false);
   const [values, setValues] = React.useState({
-    password: "",
+    password: '',
     showPassword: false,
   });
   const handleChange = (prop) => (event) => {
@@ -34,10 +33,8 @@ const ShowRecoveryPage = () => {
   };
 
   const onClickHandler = () => {
-    const isTrue = bcryptjs.compareSync(values.password, _passwordHash);
-    if (isTrue && agreed) {
-      navigate("/saveRecovery", { replace: true });
-      dispatch(decryptMnemonic({ password: values.password }));
+    if (true) {
+      navigate('/saveRecovery', { replace: true });
     }
   };
 
@@ -56,35 +53,35 @@ const ShowRecoveryPage = () => {
     <Container>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          pt: "40px",
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-start',
+          pt: '40px',
         }}
       >
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
           <ChevronLeftIcon
             sx={{
-              fontSize: "1.625rem",
+              fontSize: '1.625rem',
               fontWeight: 700,
-              cursor: "pointer",
+              cursor: 'pointer',
             }}
             onClick={() => navigate(-1)}
           />
           <Typography
             variant="dssReg"
-            sx={{ fontWeight: "fontWeightSemiBold" }}
+            sx={{ fontWeight: 'fontWeightSemiBold' }}
           >
             Show Recovery Phrase
-            <span style={{ color: "orange", fontWeight: 600 }}>.</span>
+            <span style={{ color: 'orange', fontWeight: 600 }}>.</span>
           </Typography>
         </Box>
-        <Box sx={{ mt: "15px" }}>
+        <Box sx={{ mt: '15px' }}>
           <Typography variant="tsmReg">
             Enter your password to show your recovery phrase. Turn off screen
             sharing. Don't share it with anyone.
@@ -92,17 +89,17 @@ const ShowRecoveryPage = () => {
         </Box>
       </Box>
       {/* password textBox */}
-      <Box sx={{ display: "flex", flexWrap: "wrap", mt: "45px" }}>
-        <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: '45px' }}>
+        <FormControl sx={{ m: 1, width: '100%' }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">
             Password
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
-            type={values.showPassword ? "text" : "password"}
+            type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             fullWidth
-            onChange={handleChange("password")}
+            onChange={handleChange('password')}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -124,9 +121,9 @@ const ShowRecoveryPage = () => {
 
       <Box
         sx={{
-          pt: "20px",
-          display: "flex",
-          justifyContent: "flex-start",
+          pt: '20px',
+          display: 'flex',
+          justifyContent: 'flex-start',
         }}
       >
         <FormGroup>
@@ -146,7 +143,7 @@ const ShowRecoveryPage = () => {
           by loosing the seed phrase
         </Typography>
       </Box>
-      <Box sx={{ mt: "45px", display: "flex", justifyContent: "center" }}>
+      <Box sx={{ mt: '45px', display: 'flex', justifyContent: 'center' }}>
         <MyButton
           variant="contained"
           disabled={!agreed ? true : false}

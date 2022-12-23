@@ -26,4 +26,12 @@ function decrypt(string, password) {
   return decrypted.toString();
 }
 
-export { encrypt, decrypt };
+function generateHash(string) {
+  return crypto.createHash('sha256').update(string).digest('hex');
+}
+
+function verifyHash(string, hash) {
+  return generateHash(string) === hash;
+}
+
+export { encrypt, decrypt, generateHash, verifyHash };

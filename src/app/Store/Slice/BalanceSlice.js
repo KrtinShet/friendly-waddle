@@ -1,15 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  loading: false,
-  error: null,
-  isLogged: false,
+    loading: false,
+    error: null,
+    balances: {},
+
 };
 
-const authSlice = createSlice({
+const balanceSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {},
 });
 
-export default authSlice;
+export default balanceSlice;

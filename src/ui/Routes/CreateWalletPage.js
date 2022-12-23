@@ -21,11 +21,11 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 const CreatingWalletPage = () => {
   const [agreed, setAgreed] = useState(false);
+  const navigate = useNavigate();
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [_mnemonic, _setMnemonic] = useState(
     'kite medal water surround spring sadness slot slam believe round random delay'
   );
-  const navigate = useNavigate();
   const mnemonic = _mnemonic.split(' ');
 
   const handleClick = () => {

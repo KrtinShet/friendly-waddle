@@ -1,18 +1,3 @@
-import sessionManager from './../lib/SessionManager';
-
-chrome.session = null;
-
-async function main() {
-  const session = await sessionManager.load();
-  chrome.session = session;
-  if (session) {
-    const { currentPopup } = session;
-    if (currentPopup && currentPopup.isOpen) {
-      chrome.windows.update(currentPopup.popup.id, { focused: true });
-    }
-  }
-}
-
 let currentPopup = null;
 
 function createPopup(hostTabId, service) {
@@ -71,4 +56,3 @@ function extMessageHandler(request, sender, sendResponse) {
  */
 chrome.runtime.onMessage.addListener(extMessageHandler);
 
-main();

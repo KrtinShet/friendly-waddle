@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const NetworkItem = (props) => {
-  const network = useSelector((state) => state.network[props.network]);
   const navigate = useNavigate();
   function stringToColor(string) {
     let hash = 0;
@@ -53,11 +52,11 @@ const NetworkItem = (props) => {
         <Avatar {...stringAvatar(network.name)} />
       </Box>
       <Box flexGrow={1} sx={{ ml: '20px' }}>
-        <Typography variant="tmdReg">{network.name}</Typography>
+        <Typography variant="tmdReg">Ethereum</Typography>
       </Box>
       <Box
         onClick={() => {
-          navigate(`/editNetwork/${network.chainId}`);
+          // navigate(`/editNetwork/${network.chainId}`);
         }}
       >
         <MoreVertIcon
@@ -73,7 +72,6 @@ const NetworkItem = (props) => {
 };
 
 const NetworksPage = () => {
-  const _networks = useSelector((state) => state.network.networks);
   const navigate = useNavigate();
   return (
     <Container>
@@ -113,9 +111,9 @@ const NetworksPage = () => {
       {/* single network detail cards */}
 
       <Box sx={{ maxHeight: '500px', overflow: 'auto', mt: '1rem' }}>
-        {_networks.map((network) => {
+        {/* {_networks.map((network) => {
           return <NetworkItem key={network} network={network} />;
-        })}
+        })} */}
       </Box>
     </Container>
   );

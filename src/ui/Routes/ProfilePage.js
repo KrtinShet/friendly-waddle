@@ -1,24 +1,20 @@
-import { Typography } from "@mui/material";
-import { Container } from "@mui/system";
-import Box from "@mui/material/Box";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import Radio from "@mui/material/Radio";
-import LaunchIcon from "@mui/icons-material/Launch";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import React from "react";
-import SignoutButton from "../Components/SignoutButton";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import List from "@mui/material/List";
-import AddIcon from "@mui/icons-material/Add";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
-import { logout } from "../Store/Slices/authSlice";
-import { setCurrentActiveAccount } from "../Store/Slices/accountSlice";
+import { Typography } from '@mui/material';
+import { Container } from '@mui/system';
+import Box from '@mui/material/Box';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import Radio from '@mui/material/Radio';
+import LaunchIcon from '@mui/icons-material/Launch';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import React from 'react';
+import SignoutButton from '../Components/SignoutButton';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import List from '@mui/material/List';
+import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 const AccountItem = (props) => {
-  const _accountId = props.accountId;
   function stringToColor(string) {
     let hash = 0;
     let i;
@@ -28,7 +24,7 @@ const AccountItem = (props) => {
       hash = string.charCodeAt(i) + ((hash << 5) - hash);
     }
 
-    let color = "#";
+    let color = '#';
 
     for (i = 0; i < 3; i += 1) {
       const value = (hash >> (i * 8)) & 0xff;
@@ -44,16 +40,16 @@ const AccountItem = (props) => {
       sx: {
         bgcolor: stringToColor(name),
       },
-      children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+      children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
     };
   }
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", mt: "20px" }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', mt: '20px' }}>
       <Box>
         <Avatar {...stringAvatar(`Account ${_accountId}`)} />
       </Box>
-      <Box sx={{ ml: "15px", flexGrow: 1 }}>
+      <Box sx={{ ml: '15px', flexGrow: 1 }}>
         <Typography variant="display_xs_medium">
           {`Account ${_accountId}`}
         </Typography>
@@ -71,40 +67,31 @@ const AccountItem = (props) => {
 };
 
 const ProfilePage = () => {
-  const _accounts = useSelector((state) => state.account.accounts);
-  const _activeAccount = useSelector(
-    (state) => state.account.currentActiveAccount
-  );
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [selectedValue, setSelectedValue] = React.useState(_activeAccount);
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
-    dispatch(
-      setCurrentActiveAccount({
-        accountIndex: event.target.value,
-      })
-    );
   };
 
   return (
     <Container>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          pt: "40px",
-          mb: "10px",
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          pt: '40px',
+          mb: '10px',
         }}
       >
-        <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}>
+        <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
           <ChevronLeftIcon
             sx={{
-              fontSize: "1.625rem",
+              fontSize: '1.625rem',
               fontWeight: 700,
-              cursor: "pointer",
+              cursor: 'pointer',
             }}
             onClick={() => {
               navigate(-1);
@@ -113,31 +100,30 @@ const ProfilePage = () => {
           <Typography
             variant="dssReg"
             sx={{
-              fontWeight: "fontWeightSemiBold",
+              fontWeight: 'fontWeightSemiBold',
             }}
           >
             My Account
-            <span style={{ color: "orange", fontWeight: 600 }}>.</span>
+            <span style={{ color: 'orange', fontWeight: 600 }}>.</span>
           </Typography>
           <AddIcon
             sx={{
-              fontSize: "2rem",
+              fontSize: '2rem',
               fontWeight: 700,
-              cursor: "pointer",
-              color: "gray",
+              cursor: 'pointer',
+              color: 'gray',
             }}
             onClick={() => {
-              navigate("/newAccount");
+              navigate('/newAccount');
             }}
           />
         </Box>
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button
             variant="outlined"
             size="small"
             onClick={() => {
-              dispatch(logout());
-              navigate("/login");
+              navigate('/login');
             }}
           >
             <Typography variant="tmdReg">Lock</Typography>
@@ -147,20 +133,20 @@ const ProfilePage = () => {
 
       <Container
         style={{
-          maxHeight: "150px",
-          overflow: "auto",
-          width: "100%",
+          maxHeight: '150px',
+          overflow: 'auto',
+          width: '100%',
         }}
       >
         <List>
-          {_accounts.map((accountId) => (
+          {/* {_accounts.map((accountId) => (
             <AccountItem
               key={accountId}
               selectedValue={selectedValue}
               handleChange={handleChange}
               accountId={accountId}
             />
-          ))}
+          ))} */}
         </List>
       </Container>
 
@@ -168,52 +154,50 @@ const ProfilePage = () => {
 
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          cursor: "pointer",
-          mt: "15px",
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          cursor: 'pointer',
+          mt: '15px',
         }}
         onClick={() => {
-          navigate("/profile/networkPage");
+          navigate('/profile/networkPage');
         }}
       >
         <Box sx={{ flexGrow: 1 }}>
           <Typography variant="tmdReg">Networks</Typography>
         </Box>
         <NavigateNextIcon
-          sx={{ fontSize: "1.625rem", fontWeight: 700, cursor: "pointer" }}
+          sx={{ fontSize: '1.625rem', fontWeight: 700, cursor: 'pointer' }}
         />
       </Box>
 
       {/* 2 option */}
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          mt: "15px",
-          cursor: "pointer",
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          mt: '15px',
+          cursor: 'pointer',
         }}
         onClick={() => {
-          navigate("/profile/security");
+          navigate('/profile/security');
         }}
       >
         <Box sx={{ flexGrow: 1 }}>
-          <Typography variant="tmdReg">
-            Security and Privacy
-          </Typography>
+          <Typography variant="tmdReg">Security and Privacy</Typography>
         </Box>
         <NavigateNextIcon
-          sx={{ fontSize: "1.625rem", fontWeight: 700, cursor: "pointer" }}
+          sx={{ fontSize: '1.625rem', fontWeight: 700, cursor: 'pointer' }}
         />
       </Box>
-      <Box sx={{ mt: "15px" }}>
+      <Box sx={{ mt: '15px' }}>
         <Typography
           variant="tmdReg"
           sx={{
-            fontWeight: "fontWeightSemiBold",
+            fontWeight: 'fontWeightSemiBold',
           }}
         >
           About
@@ -223,25 +207,25 @@ const ProfilePage = () => {
       terms section */}
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          mt: "15px",
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          mt: '15px',
         }}
       >
         <Box sx={{ flexGrow: 1 }}>
           <Typography variant="tmdReg">Terms of Service</Typography>
         </Box>
         <LaunchIcon
-          sx={{ fontSize: "1.625rem", fontWeight: 700, cursor: "pointer" }}
+          sx={{ fontSize: '1.625rem', fontWeight: 700, cursor: 'pointer' }}
         />
       </Box>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          mt: "15px",
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          mt: '15px',
         }}
       >
         <Box sx={{ flexGrow: 1 }}>
@@ -250,13 +234,13 @@ const ProfilePage = () => {
         <Typography>0.1</Typography>
       </Box>
       <Box
-        sx={{ display: "flex", justifyContent: "center", mt: "30px" }}
+        sx={{ display: 'flex', justifyContent: 'center', mt: '30px' }}
         onClick={() => {
-          navigate("/signout");
+          navigate('/signout');
         }}
       >
         <SignoutButton variant="contained" type="submit" color="primary">
-          <Typography sx={{ color: "#FF545E" }}>SignOut</Typography>
+          <Typography sx={{ color: '#FF545E' }}>SignOut</Typography>
         </SignoutButton>
       </Box>
     </Container>
