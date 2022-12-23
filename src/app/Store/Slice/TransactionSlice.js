@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  pendingTransactions: [],
-  completedTransactions: [],
-  transactionMap: new Map(),
+  pendingTransactions: {},
+  completedTransactions: {},
   loading: false,
   error: null,
 };
@@ -11,12 +10,6 @@ const initialState = {
 const transactionSlice = createSlice({
   name: 'transaction',
   initialState,
-  reducers: {
-    addTransaction: (state, action) => {
-      const { hash, transaction } = action.payload;
-      state.transactionMap.set(hash, transaction);
-      state.pendingTransactions.push(hash);
-    },
-  },
+  reducers: {},
 });
 export default transactionSlice;

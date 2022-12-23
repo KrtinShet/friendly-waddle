@@ -1,33 +1,15 @@
-import crypto from 'crypto';
-import { Buffer } from 'buffer';
+import CryptoJS from 'crypto-js';
 
 function encrypt(string, password) {
-  let iv = crypto.randomBytes(16);
-  let salt = crypto.randomBytes(16);
-  let key = crypto.scryptSync(password, salt, 32);
-  let cipher = crypto.createCipheriv('aes-256-ctr', key, iv);
-  let encrypted = cipher.update(string);
-  encrypted = Buffer.concat([encrypted, cipher.final()]);
-  return {
-    iv: iv.toString('hex'),
-    salt: salt.toString('hex'),
-    encryptedData: encrypted.toString('hex'),
-  };
+  return CryptoJS.AES.encrypt(string, password).toString();
 }
 
 function decrypt(string, password) {
-  let iv = Buffer.from(string.iv, 'hex');
-  let salt = Buffer.from(string.salt, 'hex');
-  let key = crypto.scryptSync(password, salt, 32);
-  let encryptedText = Buffer.from(string.encryptedData, 'hex');
-  let decipher = crypto.createDecipheriv('aes-256-ctr', key, iv);
-  let decrypted = decipher.update(encryptedText);
-  decrypted = Buffer.concat([decrypted, decipher.final()]);
-  return decrypted.toString();
+  return CryptoJS.AES.decrypt(string, password).toString(CryptoJS.enc.Utf8);
 }
 
 function generateHash(string) {
-  return crypto.createHash('sha256').update(string).digest('hex');
+  return CryptoJS.SHA256(string).toString();
 }
 
 function verifyHash(string, hash) {

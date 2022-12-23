@@ -47,19 +47,17 @@ const AccountItem = (props) => {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', mt: '20px' }}>
       <Box>
-        <Avatar {...stringAvatar(`Account ${_accountId}`)} />
+        <Avatar {...stringAvatar(`Account ${0}`)} />
       </Box>
       <Box sx={{ ml: '15px', flexGrow: 1 }}>
-        <Typography variant="display_xs_medium">
-          {`Account ${_accountId}`}
-        </Typography>
+        <Typography variant="display_xs_medium">{`Account ${0}`}</Typography>
       </Box>
       <Box>
         <Radio
-          checked={parseInt(props.selectedValue) === parseInt(_accountId)}
+          checked={parseInt(props.selectedValue) === parseInt(0)}
           onChange={props.handleChange}
-          value={_accountId}
-          name={`Account ${_accountId}`}
+          value={0}
+          name={`Account ${0}`}
         />
       </Box>
     </Box>
@@ -69,7 +67,7 @@ const AccountItem = (props) => {
 const ProfilePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [selectedValue, setSelectedValue] = React.useState(_activeAccount);
+  const [selectedValue, setSelectedValue] = React.useState(0);
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };

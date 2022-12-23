@@ -1,40 +1,40 @@
-import React from "react";
-import { Box, Container } from "@mui/system";
-import Typography from "@mui/material/Typography";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { useNavigate } from "react-router-dom";
-import ButtonBase from "@mui/material/ButtonBase";
+import React from 'react';
+import { Box, Container } from '@mui/system';
+import Typography from '@mui/material/Typography';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { useNavigate } from 'react-router-dom';
+import ButtonBase from '@mui/material/ButtonBase';
 
 const ImportWalletPage = () => {
   const navigate = useNavigate();
   return (
-    <Container sx={{ position: "relative" }}>
+    <Container sx={{ position: 'relative' }}>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "9.6vh",
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: '9.6vh',
         }}
       >
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            mt: "40px",
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            mt: '40px',
           }}
         >
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
             <ChevronLeftIcon
               sx={{
-                fontSize: "1.625rem",
+                fontSize: '1.625rem',
                 fontWeight: 700,
-                cursor: "pointer",
+                cursor: 'pointer',
               }}
               onClick={() => {
                 navigate(-1);
@@ -42,34 +42,34 @@ const ImportWalletPage = () => {
             />
             <Typography
               variant="dssReg"
-              sx={{ fontWeight: "fontWeightSemiBold" }}
+              sx={{ fontWeight: 'fontWeightSemiBold' }}
             >
               Use an existing wallet
             </Typography>
           </Box>
-          <Typography variant="tsmReg" sx={{ width: "80%", mt: 2 }}>
+          <Typography variant="tsmReg" sx={{ width: '80%', mt: 2 }}>
             Select how you would like to access your existing wallet
           </Typography>
         </Box>
 
         <ButtonBase
           sx={{
-            border: "1px solid #2382F7",
-            borderRadius: "14px",
-            padding: "1rem 1.25rem",
-            backgroundColor: "background.paper",
+            border: '1px solid #2382F7',
+            borderRadius: '14px',
+            padding: '1rem 1.25rem',
+            backgroundColor: 'background.paper',
             mt: 3,
           }}
         >
           <Box
             sx={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "flex-start",
-              flexDirection: "column",
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'flex-start',
+              flexDirection: 'column',
             }}
             onClick={() => {
-              navigate("/enterRecovery", { replace: true });
+              navigate('/enterRecovery', { replace: true });
             }}
           >
             <Typography variant="tmdBd" align="left" sx={{}}>

@@ -8,7 +8,6 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import ButtonBase from '@mui/material/ButtonBase';
 import MyButton from '../Components/MyButton';
-import { encryptMnemonic } from '../Store/Slices/accountSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import MuiAlert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';

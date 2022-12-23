@@ -5,7 +5,6 @@ import { Typography } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { useNavigate } from 'react-router-dom';
 import MyButton from './../Components/MyButton';
-import { initiateTransfer } from '../Store/Slices/transactionSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const ConfirmTransfer = () => {

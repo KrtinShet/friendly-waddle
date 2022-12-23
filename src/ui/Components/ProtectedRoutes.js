@@ -7,9 +7,10 @@ const ProtectedRoutes = () => {
   let isSignedUp = true;
   let to;
 
-  if (!isLoggedIn && !isSignedUp) to = '/welcomePage';
-  if (!isLoggedIn && isSignedUp) to = '/login';
-  return isLoggedIn ? <Outlet /> : <Navigate to={to} />;
+  // if (!isLoggedIn && !isSignedUp) to = '/welcomePage';
+  // if (!isLoggedIn && isSignedUp) to = '/login';
+  // return isLoggedIn ? <Outlet /> : <Navigate to={to} />;
+  return <Outlet />;
 };
 
 export default ProtectedRoutes;

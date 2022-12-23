@@ -2,17 +2,30 @@ import React, { useState } from 'react';
 import { Container } from '@mui/system';
 import Box from '@mui/system/Box';
 import { Typography, TextField } from '@mui/material';
-
 import { useNavigate } from 'react-router-dom';
-
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import MyButton from './../Components/MyButton';
+
+import { isValidMenmonic } from './../../app/lib/AccountManager';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 function EnterRecoveryPhrase() {
   const [value, setValue] = useState('');
+  const [error, setError] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const handleOnChange = (e) => {
+    const value = e.target.value.trim();
+    if (isValidMenmonic(value)) {
+      setError(false);
+    } else {
+      setError(true);
+    }
+    setValue(value);
+  };
+
   return (
     <Container>
       <Box
@@ -69,9 +82,9 @@ function EnterRecoveryPhrase() {
             multiline
             value={value}
             fullWidth
-            onChange={(e) => {
-              setValue(e.target.value);
-            }}
+            error={error}
+            helperText={error && 'Invalid Recovery Phrase.'}
+            onChange={handleOnChange}
           />
         </Box>
         <MyButton
