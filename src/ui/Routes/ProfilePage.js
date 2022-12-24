@@ -50,7 +50,7 @@ const AccountItem = (props) => {
         <Avatar {...stringAvatar(`Account ${0}`)} />
       </Box>
       <Box sx={{ ml: '15px', flexGrow: 1 }}>
-        <Typography variant="display_xs_medium">{`Account ${0}`}</Typography>
+        <Typography variant="dxsMed">{`Account ${0}`}</Typography>
       </Box>
       <Box>
         <Radio

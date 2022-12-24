@@ -4,27 +4,26 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Container } from '@mui/system';
 
 import MyButton from '../Components/MyButton';
 import MyTooltip from '../Components/MyTooltip';
 
 const VerifyRecoveryPage = () => {
-  const [_mnemonic, _setMnemonic] = useState(
-    'kite medal water surround spring sadness slot slam believe round random delay'
-  );
-  const mnemonic = _mnemonic.split(' ');
   const [jumbledMnemonic, setJumbledMnemonic] = useState([]);
+  const navigate = useNavigate();
+
+  const { mnemonic } = useSelector((state) => state.account);
 
   const [number1, setNumber1] = useState(null);
   const [number2, setNumber2] = useState(null);
   const tooltip = ['first', 'second', null];
   const [toolTipName1, setToolTipName1] = useState(tooltip[0]);
   const [toolTipName2, setToolTipName2] = useState(tooltip[1]);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    setJumbledMnemonic(fyShuffle(mnemonic));
+    setJumbledMnemonic(fyShuffle(mnemonic.split(' ')));
     // eslint-disable-next-line
   }, []);
 

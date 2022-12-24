@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import logger from 'redux-logger';
+import chalk from 'chalk';
 
 import AccountSlice from './Slice/AccountSlice';
 import AssetSlice from './Slice/AssetSlice';
@@ -50,7 +51,9 @@ const store = configureStore({
 });
 
 const persistor = persistStore(store, null, () => {
+  console.log(chalk.bgWhite('state changed'));
   const state = store.getState();
+  if (!state.auth.isLoggedIn) return;
   const stateToPersist = {
     account: state.account,
     asset: state.asset,
@@ -70,6 +73,7 @@ const persistor = persistStore(store, null, () => {
   );
 
   chrome.storage.local.set({ state: encryptedState });
+  console.log(chalk.green('Persisted state to local storage'));
 });
 
 export { store, persistor };

@@ -23,10 +23,8 @@ const CreatingWalletPage = () => {
   const [agreed, setAgreed] = useState(false);
   const navigate = useNavigate();
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [_mnemonic, _setMnemonic] = useState(
-    'kite medal water surround spring sadness slot slam believe round random delay'
-  );
-  const mnemonic = _mnemonic.split(' ');
+
+  const { mnemonic } = useSelector((state) => state.account);
 
   const handleClick = () => {
     setSnackbarOpen(true);
@@ -113,7 +111,7 @@ const CreatingWalletPage = () => {
         </Typography>
 
         <Box sx={{ flexGrow: 1, mt: 3 }}>
-          {mnemonic.map((content, i) => {
+          {mnemonic.split(' ').map((content, i) => {
             return (
               <Seedphrase
                 key={i}
@@ -141,10 +139,9 @@ const CreatingWalletPage = () => {
               fontSize: '1.625rem',
               fontWeight: 700,
             }}
-            onClick={() => {
-              navigator.clipboard.writeText(_mnemonic).then(() => {
-                handleClick();
-              });
+            onClick={async () => {
+              await navigator.clipboard.writeText(mnemonic);
+              handleClick();
             }}
           />
           <Typography variant="xsmedium">Copy</Typography>

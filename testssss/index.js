@@ -1,0 +1,10 @@
+const state =
+  'U2FsdGVkX1/EASck+Vj/QUJ3kVzjvosohmqQ4WPGIjsJJOEBfN1DIm3S26H733oZhKc5h3hRt2Oz4ncV87MLpuHlNivuhROTBRwkum+Muon0KgoWlHw9OXehqB5OMQXSy72hker1lwbnHIX8bD8Lhbj4DwAFoZ4N1gXkEUT7oWUvQRKE59zwO8911q1xaLz2fNtegrR8/sKY+Do+RSxQ3LIH8oPBjcjwGqTzduUFPrbMJfjKaC+AONPKfs7DEkdY0SfT3SSJ38xTSWGINz8qQQHJKITODPsVqSuJ90bWE+EKUAU6DAmDEn2runZDKnghapPUzxeziMZqZdk5GhHVZjAJEUhE4cTw4eIB08Ap35JKVyZfiaAhH2olugSVQNjt7ug4qE9QeNcBOc2/abJBJ4bI6gGl5mjB5Mhqifiu4gUXY9j466WEMpIJ6QW+CvU1cl8d4oKgPSRLCOc4vKFgm916STu9UdAmfF9SXvuBl7btYk3ko5fI7VF8RoDVxnH+qwdi2+YvZo5YNtCkRU4JuSll8f9jitqg16Nw6EzD1eQ4f9XHIKTFyEI/eNZ/m6Jc/9nb+jm+vmYiS7Ax97fsIU/FYFk+vgSNwFRK0NAuY7sf5mGPL64sw+Sa6I5RsKrFsUT9nRDpsmazsGWmnHjWDBDta8UnABIBkr0RDutdQQRMCq297rgu+EohniUiiO/brNcBPiw7WFSLBVci2BncftoIlPftfxe1ptjo+5TraUx2fgGXVgEIx8m8oizRkJ3xVGGM+prJ1I9tGS531qi2fuiR9ejGmT3hMoR0J3JYNfS1OSixB2bgoQrmCdnNnTbmwl4K/BomXKV1qXkzLxOM/kfAAsQHxUshkqzr0F0+CD4=';
+
+const CryptoJS = require('crypto-js');
+const { decrypt } = require('crypto-js/aes');
+
+let parsedState = JSON.parse(
+  decrypt(state, '1@Krtin@1').toString(CryptoJS.enc.Utf8)
+);
+console.log(parsedState);

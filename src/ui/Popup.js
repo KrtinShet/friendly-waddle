@@ -1,21 +1,51 @@
 import React, { useMemo, useState } from 'react';
-import { ThemeProvider } from '@mui/material/styles';
-import { createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/system';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { createTheme } from '@mui/material';
+import { Box, Container } from '@mui/system';
+import {
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  Typography,
+} from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
+import { persistor, store } from './../app/Store';
 import AppLayout from './AppLayout';
 
-const storedMode = localStorage.getItem('Chai_UI_Mode')
-  ? localStorage.getItem('Chai_UI_Mode')
-  : 'dark';
-
-function App() {
-  const [mode, setMode] = useState(storedMode);
+const Popup = () => {
+  const [mode, setMode] = useState('dark');
+  const [password, setPassword] = useState();
+  const [passwordHash, setPasswordHash] = useState(null);
+  const [error, setError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const toggleMode = () => {
-    const nextMode = mode === 'light' ? 'dark' : 'light';
+    const nextMode = mode === 'dark' ? 'light' : 'dark';
     setMode(nextMode);
-    localStorage.setItem('Chai_UI_Mode', nextMode);
   };
+
+  const handleLogin = async () => {
+    if (verifyHash(password, passwordHash)) {
+      let data = await chrome.storage.local.get('state');
+      if (data['state']) {
+        const decryptedData = decrypt(data['state'], password);
+        await chrome.storage.session.set({ 'persist:root': decryptedData });
+        persistor.persist();
+      } else {
+        persistor.persist();
+      }
+      setLoading(false);
+    } else {
+      setError(true);
+    }
+  };
+
   const theme = useMemo(
     () =>
       createTheme({
@@ -400,11 +430,16 @@ function App() {
       }),
     [mode]
   );
+
   return (
     <ThemeProvider theme={theme}>
-      <AppLayout toggleMode={toggleMode} />
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <AppLayout />
+        </PersistGate>
+      </Provider>
     </ThemeProvider>
   );
-}
+};
 
-export default App;
+export default Popup;

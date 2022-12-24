@@ -14,8 +14,13 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Container from '@mui/system/Container';
 import Button from '@mui/material/Button';
 
+import { useDispatch } from 'react-redux';
+import { signup } from './../../app/Store/Slice/AuthSlice';
+
 const SignupPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [values, setValues] = useState({
     password: '',
     confirmPassword: '',
@@ -231,6 +236,7 @@ const SignupPage = () => {
           disabled={!canNavigate}
           onClick={() => {
             if (canNavigate) {
+              dispatch(signup({ password: values.password }));
               navigate('/wallet', { replace: true });
             }
           }}

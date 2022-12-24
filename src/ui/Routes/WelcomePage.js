@@ -3,9 +3,13 @@ import Typography from '@mui/material/Typography';
 import { Box, Container, Stack } from '@mui/system';
 import MyButton from './../Components/MyButton';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { createMnemonic } from './../../app/Store/Slice/AccountSlice';
 
 const WelcomePage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <Container sx={{ position: 'relative', height: '100%' }}>
@@ -75,6 +79,7 @@ const WelcomePage = () => {
             type="submit"
             color="primary"
             onClick={() => {
+              dispatch(createMnemonic());
               navigate('/createWallet');
             }}
           >

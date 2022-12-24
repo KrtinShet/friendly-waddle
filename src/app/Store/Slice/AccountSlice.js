@@ -55,4 +55,6 @@ const accountSlice = createSlice({
   extraReducers: (builder) => {},
 });
 
+export const { createMnemonic, importMnemonic, addAccount } =
+  accountSlice.actions;
 export default accountSlice;

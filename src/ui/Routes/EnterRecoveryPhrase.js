@@ -5,10 +5,10 @@ import { Typography, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import MyButton from './../Components/MyButton';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { isValidMenmonic } from './../../app/lib/AccountManager';
-
-import { useDispatch, useSelector } from 'react-redux';
+import { importMnemonic } from './../../app/Store/Slice/AccountSlice';
 
 function EnterRecoveryPhrase() {
   const [value, setValue] = useState('');
@@ -92,6 +92,7 @@ function EnterRecoveryPhrase() {
           variant="contained"
           disabled={value.split(' ').length === 12 ? false : true}
           onClick={() => {
+            dispatch(importMnemonic({ mnemonic: value }));
             navigate('/verifyRecovery', { replace: true });
           }}
         >

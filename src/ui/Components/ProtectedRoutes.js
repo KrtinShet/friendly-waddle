@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const ProtectedRoutes = () => {
-  let isLoggedIn = true;
-  let isSignedUp = true;
+  const { isLoggedIn, isSignedUp } = useSelector((state) => state.auth);
   let to;
 
-  // if (!isLoggedIn && !isSignedUp) to = '/welcomePage';
-  // if (!isLoggedIn && isSignedUp) to = '/login';
-  // return isLoggedIn ? <Outlet /> : <Navigate to={to} />;
-  return <Outlet />;
+  if (!isLoggedIn && !isSignedUp) to = '/welcomePage';
+  if (!isLoggedIn && isSignedUp) to = '/login';
+  return isLoggedIn ? <Outlet /> : <Navigate to={to} />;
 };
 
 export default ProtectedRoutes;

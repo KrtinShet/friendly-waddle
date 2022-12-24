@@ -35,6 +35,25 @@ const AppLayout = () => {
       <CssBaseline />
       <Router>
         <Routes>
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/profilePage" element={<ProfilePage />} />
+            <Route path="/wallet" element={<WalletHomePage />} />
+            <Route path="/wallet/buy" element={<BuyPage />} />
+            <Route path="/wallet/recieve" element={<Receivepage />} />
+            <Route path="/wallet/transfer" element={<TransferPage />} />
+            <Route path="/signout" element={<SignOutPage />} />
+            <Route path="/p2p" element={<P2PPage />} />
+            <Route path="/newAccount" element={<CreateNewAccount />} />
+            <Route
+              path="/wallet/transfer/list"
+              element={<TransferPageList />}
+            />
+            <Route path="/profile/security" element={<SecurityPrivacyPage />} />
+            <Route path="/profile/networkPage" element={<NetworksPage />} />
+          </Route>
+          <Route path="/confirmTransfer" element={<ConfirmTransfer />} />
+          <Route path="/showRecovery" element={<ShowRecoveryPage />} />
+          <Route path="/saveRecovery" element={<SaveRecoveryPage />} />
           <Route path="/" element={<WelcomePage />} />
           <Route path="/welcomePage" element={<WelcomePage />} />
           <Route path="/createWallet" element={<CreateWalletPage />} />
@@ -43,20 +62,6 @@ const AppLayout = () => {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/verifyRecovery" element={<VerifyRecoverPage />} />
           <Route path="/enterRecovery" element={<EnterRecoveryPhrasePage />} />
-          <Route path="/profilePage" element={<ProfilePage />} />
-          <Route path="/wallet/buy" element={<BuyPage />} />
-          <Route path="/wallet/recieve" element={<Receivepage />} />
-          <Route path="/wallet/transfer" element={<TransferPage />} />
-          <Route path="/wallet/transfer/list" element={<TransferPageList />} />
-          <Route path="/confirmTransfer" element={<ConfirmTransfer />} />
-          <Route path="/showRecovery" element={<ShowRecoveryPage />} />
-          <Route path="/profile/security" element={<SecurityPrivacyPage />} />
-          <Route path="/profile/networkPage" element={<NetworksPage />} />
-          <Route path="/saveRecovery" element={<SaveRecoveryPage />} />
-          <Route path="/signout" element={<SignOutPage />} />
-          <Route path="/p2p" element={<P2PPage />} />
-          <Route path="/wallet" element={<WalletHomePage />} />
-          <Route path="/newAccount" element={<CreateNewAccount />} />
         </Routes>
       </Router>
     </>
