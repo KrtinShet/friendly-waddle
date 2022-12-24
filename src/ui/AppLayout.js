@@ -14,13 +14,10 @@ import NetworksPage from './Routes/NetworksPage';
 import P2PPage from './Routes/P2PPage';
 import SignOutPage from './Routes/SignOutPage';
 import SignupPage from './Routes/SignupPage';
-import TransferAmountPage from './Routes/TransferAmount';
 import TransferPage from './Routes/TransferPage';
 import TransferPageList from './Routes/TransferPageList';
 import VerifyRecoverPage from './Routes/VerifyRecoveryPage';
-import WalletActivityPage from './Routes/WalletActivityPage';
 import WalletHomePage from './Routes/WalletHome';
-import WalletMainPage from './Routes/WalletMainPage';
 import ProfilePage from './Routes/ProfilePage';
 import Receivepage from './Routes/ReceivePage';
 import ConfirmTransfer from './Routes/ConfirmTransfer';
@@ -37,6 +34,7 @@ const AppLayout = () => {
         <Routes>
           <Route element={<ProtectedRoutes />}>
             <Route path="/profilePage" element={<ProfilePage />} />
+            <Route path="/" element={<WalletHomePage />} />
             <Route path="/wallet" element={<WalletHomePage />} />
             <Route path="/wallet/buy" element={<BuyPage />} />
             <Route path="/wallet/recieve" element={<Receivepage />} />
@@ -54,7 +52,6 @@ const AppLayout = () => {
           <Route path="/confirmTransfer" element={<ConfirmTransfer />} />
           <Route path="/showRecovery" element={<ShowRecoveryPage />} />
           <Route path="/saveRecovery" element={<SaveRecoveryPage />} />
-          <Route path="/" element={<WelcomePage />} />
           <Route path="/welcomePage" element={<WelcomePage />} />
           <Route path="/createWallet" element={<CreateWalletPage />} />
           <Route path="/importWallet" element={<ImportWalletPage />} />

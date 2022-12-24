@@ -50,30 +50,6 @@ const store = configureStore({
     }).concat(logger),
 });
 
-const persistor = persistStore(store, null, () => {
-  console.log(chalk.bgWhite('state changed'));
-  const state = store.getState();
-  if (!state.auth.isLoggedIn) return;
-  const stateToPersist = {
-    account: state.account,
-    asset: state.asset,
-    auth: {
-      ...state.auth,
-      isLoggedIn: false,
-      password: undefined,
-    },
-    balance: state.balance,
-    network: state.network,
-    transaction: state.transaction,
-  };
-
-  const encryptedState = encrypt(
-    JSON.stringify(stateToPersist),
-    state.auth.password
-  );
-
-  chrome.storage.local.set({ state: encryptedState });
-  console.log(chalk.green('Persisted state to local storage'));
-});
+const persistor = persistStore(store);
 
 export { store, persistor };

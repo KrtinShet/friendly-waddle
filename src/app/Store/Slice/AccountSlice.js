@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { decrypt } from './../../utils';
+import { decrypt, encrypt } from './../../utils';
 import {
   createNewAccount,
   createNewMnemonic,
@@ -14,6 +14,8 @@ const initialState = {
   loading: false,
   error: null,
 };
+
+import { signup } from './AuthSlice';
 
 const accountSlice = createSlice({
   name: 'account',
@@ -52,7 +54,12 @@ const accountSlice = createSlice({
       state.accounts[account.id] = account;
     },
   },
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder.addCase(signup, (state, action) => {
+      const { password } = action.payload;
+      state.mnemonic = encrypt(state.mnemonic, password);
+    });
+  },
 });
 
 export const { createMnemonic, importMnemonic, addAccount } =
